@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NewsApp{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f0f14;
+            --surface: #1a1a24;
+            --surface2: #23232f;
+            --border: #2e2e3e;
+            --accent: #7c6ef5;
+            --accent-hover: #9587ff;
+            --accent-glow: rgba(124, 110, 245, 0.25);
+            --text: #e8e8f0;
+            --text-muted: #8888a8;
+            --success: #34d399;
+            --danger: #f87171;
+            --warning: #fbbf24;
+            --radius: 12px;
+            --transition: 0.2s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            background: rgba(26, 26, 36, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            gap: 8px;
+        }
+
+        .nav-brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+            margin-right: 16px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .nav-spacer {
+            flex: 1;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-reader {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+        }
+
+        .badge-editor {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        .badge-journalist {
+            background: rgba(124, 110, 245, 0.2);
+            color: var(--accent-hover);
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        p {
+            color: var(--text-muted);
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .card-excerpt {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 0 0 var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 0 16px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .btn-success:hover {
+            background: rgba(52, 211, 153, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(248, 113, 113, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* FORMS */
+        .form-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            outline: none;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* STATUS BADGES */
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-draft {
+            background: rgba(136, 136, 168, 0.15);
+            color: var(--text-muted);
+        }
+
+        .status-pending {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        .status-approved {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+        }
+
+        .status-rejected {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--danger);
+        }
+
+        /* ALERTS */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert-success {
+            background: rgba(52, 211, 153, 0.12);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--success);
+        }
+
+        .alert-error {
+            background: rgba(248, 113, 113, 0.12);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: var(--danger);
+        }
+
+        .alert-warning {
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: var(--warning);
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        /* ACTION ROW */
+        .action-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            transition: border-color var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: slideIn 0.4s ease both;
+        }
+
+        .fade-in:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+
+        .fade-in:nth-child(3) {
+            animation-delay: 0.10s;
+        }
+
+        .fade-in:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+
+        .fade-in:nth-child(5) {
+            animation-delay: 0.20s;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            margin: 24px;
+            animation: slideIn 0.25s ease;
+        }
+
+        .modal h3 {
+            margin-bottom: 12px;
+        }
+
+        .modal p {
+            margin-bottom: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        a.card-title-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+
+        a.card-title-link:hover {
+            color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 16px;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}" class="nav-brand">📰 NewsApp</a>
+        <a href="{% url 'home' %}">Home</a>
+        {% if user.is_authenticated %}
+        {% if user.role == 'journalist' %}
+        <a href="{% url 'journalist_dashboard' %}">My Articles</a>
+        <a href="{% url 'submit_article' %}">+ Submit</a>
+        {% endif %}
+        {% if user.role == 'editor' %}
+        <a href="{% url 'editor_dashboard' %}">Editor Dashboard</a>
+        {% endif %}
+        <div class="nav-spacer"></div>
+        <div class="nav-user">
+            <div class="avatar">{{ user.username|first|upper }}</div>
+            <span>{{ user.username }}</span>
+            <span class="badge badge-{{ user.role }}">{{ user.role }}</span>
+            <a href="{% url 'logout' %}" class="btn btn-ghost btn-sm">Logout</a>
+        </div>
+        {% else %}
+        <div class="nav-spacer"></div>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div
+            class="alert {% if message.tags == 'error' %}alert-error{% elif message.tags == 'warning' %}alert-warning{% else %}alert-success{% endif %}">
+            {% if message.tags == 'error' %}⚠️{% elif message.tags == 'warning' %}⚡{% else %}✅{% endif %}
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <h3 id="modalTitle">Confirm Action</h3>
+            <p id="modalMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-success" id="modalConfirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pendingForm = null;
+        let pendingAction = null;
+
+        function confirmAction(formId, action, title, message) {
+            pendingForm = document.getElementById(formId);
+            pendingAction = action;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            const btn = document.getElementById('modalConfirmBtn');
+            btn.className = action === 'approve' ? 'btn btn-success' : 'btn btn-danger';
+            btn.textContent = action === 'approve' ? '✅ Approve' : '❌ Reject';
+            document.getElementById('confirmModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+            pendingForm = null;
+        }
+
+        document.getElementById('modalConfirmBtn').addEventListener('click', function () {
+            if (pendingForm) {
+                const input = pendingForm.querySelector('input[name="action"]');
+                if (input) input.value = pendingAction;
+                pendingForm.submit();
+            }
+            closeModal();
+        });
+
+        document.getElementById('confirmModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+</body>
+
+</html>
