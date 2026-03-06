@@ -1,0 +1,66 @@
+{% extends 'news_app/base.html' %}
+{% block title %}Editor Dashboard – NewsApp{% endblock %}
+{% block content %}
+
+<div class="page-header fade-in"
+    style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+    <div>
+        <h1>Editor Dashboard</h1>
+        <p>Review and approve submitted articles before publishing.</p>
+    </div>
+    <span class="badge badge-editor" style="font-size: 0.9rem; padding: 6px 14px;">
+        {{ articles|length }} Pending
+    </span>
+</div>
+
+{% if articles %}
+{% for article in articles %}
+<div class="card fade-in">
+    <div class="card-meta">
+        📅 {{ article.date_posted|date:"d M Y, H:i" }}
+        &nbsp;·&nbsp; ✍️ {{ article.author.username }}
+        {% if article.publisher %}
+        &nbsp;·&nbsp; 🏢 {{ article.publisher.name }}
+        {% endif %}
+        <span class="status status-pending" style="float:right;">Pending Review</span>
+    </div>
+
+    <h2>{{ article.title }}</h2>
+    <p class="card-excerpt">{{ article.content|truncatewords:50 }}</p>
+
+    <div class="action-row">
+        <a href="{% url 'approve_article' article.pk %}" class="btn btn-ghost btn-sm">Full Review →</a>
+        <div style="flex:1;"></div>
+
+        <form method="post" action="{% url 'approve_article' article.pk %}" id="form-approve-{{ article.pk }}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="approve">
+            <button type="button" class="btn btn-success btn-sm"
+                onclick="confirmAction('form-approve-{{ article.pk }}', 'approve',
+                        'Approve Article',
+                        'Approve &quot;{{ article.title|escapejs }}&quot;? It will be published and subscribers notified.')">
+                ✅ Approve
+            </button>
+        </form>
+
+        <form method="post" action="{% url 'approve_article' article.pk %}" id="form-reject-{{ article.pk }}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="reject">
+            <button type="button" class="btn btn-danger btn-sm" onclick="confirmAction('form-reject-{{ article.pk }}', 'reject',
+                        'Reject Article',
+                        'Reject &quot;{{ article.title|escapejs }}&quot;? The journalist will be notified.')">
+                ❌ Reject
+            </button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-state fade-in">
+    <div class="empty-icon">✅</div>
+    <h3>All Caught Up!</h3>
+    <p>No articles are currently awaiting review.</p>
+</div>
+{% endif %}
+
+{% endblock %}

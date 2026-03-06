@@ -1,0 +1,64 @@
+{% extends 'news_app/base.html' %}
+{% block title %}Login - NewsApp{% endblock %}
+{% block content %}
+
+<div style="max-width: 420px; margin: 60px auto;">
+    <div class="form-card fade-in">
+        <div style="text-align:center; margin-bottom: 32px;">
+            <h1 style="font-size:1.5rem;">Welcome back</h1>
+            <p>Sign in to your NewsApp account</p>
+        </div>
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding: 12px;">
+                Sign In
+            </button>
+        </form>
+
+        <div style="margin-top: 24px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+            <h3 style="font-size: 1rem; margin-bottom: 10px;">Demo Login Credentials</h3>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px;">
+                <button type="button" class="btn btn-ghost btn-sm" onclick="quickLogin('reader_demo', 'DemoPass123!')">Login As Reader</button>
+                <button type="button" class="btn btn-ghost btn-sm" onclick="quickLogin('journalist_demo', 'DemoPass123!')">Login As Journalist</button>
+                <button type="button" class="btn btn-ghost btn-sm" onclick="quickLogin('editor_demo', 'DemoPass123!')">Login As Editor</button>
+            </div>
+            <div style="font-size: 0.9rem; line-height: 1.6;">
+                <strong>Reader POV</strong><br>
+                Username: <span style="user-select: all;">reader_demo</span><br>
+                Password: <span style="user-select: all;">DemoPass123!</span><br><br>
+
+                <strong>Journalist POV</strong><br>
+                Username: <span style="user-select: all;">journalist_demo</span><br>
+                Password: <span style="user-select: all;">DemoPass123!</span><br><br>
+
+                <strong>Editor POV</strong><br>
+                Username: <span style="user-select: all;">editor_demo</span><br>
+                Password: <span style="user-select: all;">DemoPass123!</span>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">
+                Sign in with each account to test role-based dashboards.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function quickLogin(username, password) {
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const form = document.getElementById('loginForm');
+        usernameInput.value = username;
+        passwordInput.value = password;
+        form.submit();
+    }
+</script>
+
+{% endblock %}
