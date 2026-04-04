@@ -8,10 +8,7 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-COPY manage.py ./
-COPY news_project ./news_project
-COPY news_app ./news_app
-COPY templates ./templates
+COPY . .
 
 EXPOSE 8000
 
