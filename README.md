@@ -1,6 +1,6 @@
-# News System - Django Capstone Project
+# Docker Capstone Project
 
-Repository: https://github.com/Zusiphe/final-django-capstone
+Repository: https://github.com/ZUSIPHE74/Docker-Capstone-Project
 
 This is a role-based Django news application with three user types:
 - `Reader`: view approved content and subscriptions
