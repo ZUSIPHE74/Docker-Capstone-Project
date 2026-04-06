@@ -1,3 +1,5 @@
+"""API views for delivering subscribed, approved articles."""
+
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
@@ -7,10 +9,13 @@ from .serializers import ArticleSerializer
 
 
 class SubscribedArticlesAPIView(ListAPIView):
+    """Return approved articles for the reader's subscriptions."""
+
     serializer_class = ArticleSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        """Filter approved articles by followed publishers or journalists."""
         user = self.request.user
         subscribed_publishers = user.subscribed_publishers.all()
         subscribed_journalists = user.subscribed_journalists.all()
