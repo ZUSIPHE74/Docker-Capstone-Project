@@ -111,13 +111,17 @@
 </li>
       <li><a href="modules.html#news_app.models.Article.MultipleObjectsReturned">Article.MultipleObjectsReturned</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules.html#news_app.models.Article.NotUpdated">Article.NotUpdated</a>
 </li>
       <li><a href="modules.html#news_app.views.article_detail">article_detail() (in module news_app.views)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules.html#news_app.models.Publisher.articles">articles (news_app.models.Publisher attribute)</a>
+</li>
+      <li><a href="modules.html#news_app.serializers.ArticleSerializer">ArticleSerializer (class in news_app.serializers)</a>
+</li>
+      <li><a href="modules.html#news_app.serializers.ArticleSerializer.Meta">ArticleSerializer.Meta (class in news_app.serializers)</a>
 </li>
       <li><a href="modules.html#news_app.models.Article.author">author (news_app.models.Article attribute)</a>
 
@@ -134,6 +138,10 @@
       <li><a href="modules.html#news_app.models.User.authored_articles">authored_articles (news_app.models.User attribute)</a>
 </li>
       <li><a href="modules.html#news_app.models.User.authored_newsletters">authored_newsletters (news_app.models.User attribute)</a>
+</li>
+      <li><a href="modules.html#news_app.serializers.AuthorSerializer">AuthorSerializer (class in news_app.serializers)</a>
+</li>
+      <li><a href="modules.html#news_app.serializers.AuthorSerializer.Meta">AuthorSerializer.Meta (class in news_app.serializers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -189,10 +197,18 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules.html#news_app.models.User.first_name">first_name (news_app.models.User attribute)</a>
+      <li><a href="modules.html#news_app.serializers.ArticleSerializer.Meta.fields">fields (news_app.serializers.ArticleSerializer.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules.html#news_app.serializers.AuthorSerializer.Meta.fields">(news_app.serializers.AuthorSerializer.Meta attribute)</a>
 </li>
+        <li><a href="modules.html#news_app.serializers.PublisherSerializer.Meta.fields">(news_app.serializers.PublisherSerializer.Meta attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules.html#news_app.models.User.first_name">first_name (news_app.models.User attribute)</a>
+</li>
       <li><a href="modules.html#news_app.models.User.followers">followers (news_app.models.User attribute)</a>
 </li>
   </ul></td>
@@ -211,14 +227,16 @@
       </ul></li>
       <li><a href="modules.html#news_app.models.User.get_previous_by_date_joined">get_previous_by_date_joined() (news_app.models.User method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules.html#news_app.models.Article.get_previous_by_date_posted">get_previous_by_date_posted() (news_app.models.Article method)</a>
 
       <ul>
         <li><a href="modules.html#news_app.models.Newsletter.get_previous_by_date_posted">(news_app.models.Newsletter method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules.html#news_app.api_views.SubscribedArticlesAPIView.get_queryset">get_queryset() (news_app.api_views.SubscribedArticlesAPIView method)</a>
+</li>
       <li><a href="modules.html#news_app.models.User.get_role_display">get_role_display() (news_app.models.User method)</a>
 </li>
       <li><a href="modules.html#news_app.models.Article.get_status_display">get_status_display() (news_app.models.Article method)</a>
@@ -293,11 +311,23 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules.html#news_app.serializers.ArticleSerializer.Meta.model">model (news_app.serializers.ArticleSerializer.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules.html#news_app.serializers.AuthorSerializer.Meta.model">(news_app.serializers.AuthorSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules.html#news_app.serializers.PublisherSerializer.Meta.model">(news_app.serializers.PublisherSerializer.Meta attribute)</a>
+</li>
+      </ul></li>
       <li>
     module
 
       <ul>
+        <li><a href="modules.html#module-news_app.api_views">news_app.api_views</a>
+</li>
         <li><a href="modules.html#module-news_app.models">news_app.models</a>
+</li>
+        <li><a href="modules.html#module-news_app.serializers">news_app.serializers</a>
 </li>
         <li><a href="modules.html#module-news_app.views">news_app.views</a>
 </li>
@@ -311,6 +341,13 @@
       <li><a href="modules.html#news_app.models.Publisher.name">name (news_app.models.Publisher attribute)</a>
 </li>
       <li>
+    news_app.api_views
+
+      <ul>
+        <li><a href="modules.html#module-news_app.api_views">module</a>
+</li>
+      </ul></li>
+      <li>
     news_app.models
 
       <ul>
@@ -318,14 +355,21 @@
 </li>
       </ul></li>
       <li>
+    news_app.serializers
+
+      <ul>
+        <li><a href="modules.html#module-news_app.serializers">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     news_app.views
 
       <ul>
         <li><a href="modules.html#module-news_app.views">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules.html#news_app.models.Newsletter">Newsletter (class in news_app.models)</a>
 </li>
       <li><a href="modules.html#news_app.models.Newsletter.DoesNotExist">Newsletter.DoesNotExist</a>
@@ -360,6 +404,8 @@
 </li>
       <li><a href="modules.html#news_app.models.Article.PENDING">PENDING (news_app.models.Article attribute)</a>
 </li>
+      <li><a href="modules.html#news_app.api_views.SubscribedArticlesAPIView.permission_classes">permission_classes (news_app.api_views.SubscribedArticlesAPIView attribute)</a>
+</li>
       <li><a href="modules.html#news_app.models.Publisher">Publisher (class in news_app.models)</a>
 </li>
       <li><a href="modules.html#news_app.models.Article.publisher">publisher (news_app.models.Article attribute)</a>
@@ -386,6 +432,10 @@
         <li><a href="modules.html#news_app.models.User.publisher_id">(news_app.models.User attribute)</a>
 </li>
       </ul></li>
+      <li><a href="modules.html#news_app.serializers.PublisherSerializer">PublisherSerializer (class in news_app.serializers)</a>
+</li>
+      <li><a href="modules.html#news_app.serializers.PublisherSerializer.Meta">PublisherSerializer.Meta (class in news_app.serializers)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -412,6 +462,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules.html#news_app.models.User.save">save() (news_app.models.User method)</a>
 </li>
+      <li><a href="modules.html#news_app.api_views.SubscribedArticlesAPIView.serializer_class">serializer_class (news_app.api_views.SubscribedArticlesAPIView attribute)</a>
+</li>
       <li><a href="modules.html#news_app.views.setup_permissions_view">setup_permissions_view() (in module news_app.views)</a>
 </li>
       <li><a href="modules.html#news_app.views.signup_view">signup_view() (in module news_app.views)</a>
@@ -429,6 +481,8 @@
       <li><a href="modules.html#news_app.models.User.subscribed_journalists">subscribed_journalists (news_app.models.User attribute)</a>
 </li>
       <li><a href="modules.html#news_app.models.User.subscribed_publishers">subscribed_publishers (news_app.models.User attribute)</a>
+</li>
+      <li><a href="modules.html#news_app.api_views.SubscribedArticlesAPIView">SubscribedArticlesAPIView (class in news_app.api_views)</a>
 </li>
       <li><a href="modules.html#news_app.models.Publisher.subscribers">subscribers (news_app.models.Publisher attribute)</a>
 </li>

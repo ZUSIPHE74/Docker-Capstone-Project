@@ -10,3 +10,13 @@ News App Modules
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. automodule:: news_app.api_views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: news_app.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -151,6 +151,36 @@
 <li class="toctree-l3"><a class="reference internal" href="#news_app.models.User.username"><code class="docutils literal notranslate"><span class="pre">User.username</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#news_app.api_views.SubscribedArticlesAPIView"><code class="docutils literal notranslate"><span class="pre">SubscribedArticlesAPIView</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.api_views.SubscribedArticlesAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">SubscribedArticlesAPIView.get_queryset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.api_views.SubscribedArticlesAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">SubscribedArticlesAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.api_views.SubscribedArticlesAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">SubscribedArticlesAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#news_app.serializers.ArticleSerializer"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.serializers.ArticleSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer.Meta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.ArticleSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.ArticleSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">ArticleSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#news_app.serializers.AuthorSerializer"><code class="docutils literal notranslate"><span class="pre">AuthorSerializer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.serializers.AuthorSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">AuthorSerializer.Meta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.AuthorSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">AuthorSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.AuthorSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">AuthorSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#news_app.serializers.PublisherSerializer"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#news_app.serializers.PublisherSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer.Meta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.PublisherSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#news_app.serializers.PublisherSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PublisherSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -954,6 +984,104 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#news_app.models.User.username" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-news_app.api_views">API views for delivering subscribed, approved articles.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.api_views.SubscribedArticlesAPIView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">news_app.api_views.</span></span><span class="sig-name descname"><span class="pre">SubscribedArticlesAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/news_app/api_views.html#SubscribedArticlesAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.api_views.SubscribedArticlesAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<p>Return approved articles for the reader’s subscriptions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="news_app.api_views.SubscribedArticlesAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/news_app/api_views.html#SubscribedArticlesAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.api_views.SubscribedArticlesAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Filter approved articles by followed publishers or journalists.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.api_views.SubscribedArticlesAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#news_app.api_views.SubscribedArticlesAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.api_views.SubscribedArticlesAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#news_app.api_views.SubscribedArticlesAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#news_app.serializers.ArticleSerializer" title="news_app.serializers.ArticleSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-news_app.serializers">Serializer definitions for publisher, author, and article API responses.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.ArticleSerializer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">news_app.serializers.</span></span><span class="sig-name descname"><span class="pre">ArticleSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/news_app/serializers.html#ArticleSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.ArticleSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serialize approved article payloads with nested author and publisher.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.ArticleSerializer.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/news_app/serializers.html#ArticleSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.ArticleSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.ArticleSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'title',</span> <span class="pre">'content',</span> <span class="pre">'date_posted',</span> <span class="pre">'author',</span> <span class="pre">'publisher',</span> <span class="pre">'status']</span></em><a class="headerlink" href="#news_app.serializers.ArticleSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.ArticleSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#news_app.serializers.ArticleSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#news_app.models.Article" title="news_app.models.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">Article</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.AuthorSerializer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">news_app.serializers.</span></span><span class="sig-name descname"><span class="pre">AuthorSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/news_app/serializers.html#AuthorSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.AuthorSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serialize minimal author information for nested article output.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.AuthorSerializer.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/news_app/serializers.html#AuthorSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.AuthorSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.AuthorSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'username',</span> <span class="pre">'role']</span></em><a class="headerlink" href="#news_app.serializers.AuthorSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.AuthorSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#news_app.serializers.AuthorSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#news_app.models.User" title="news_app.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.PublisherSerializer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">news_app.serializers.</span></span><span class="sig-name descname"><span class="pre">PublisherSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/news_app/serializers.html#PublisherSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.PublisherSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serialize publisher identity and profile fields.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="news_app.serializers.PublisherSerializer.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/news_app/serializers.html#PublisherSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#news_app.serializers.PublisherSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.PublisherSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'name',</span> <span class="pre">'website',</span> <span class="pre">'description']</span></em><a class="headerlink" href="#news_app.serializers.PublisherSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="news_app.serializers.PublisherSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#news_app.serializers.PublisherSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#news_app.models.Publisher" title="news_app.models.Publisher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Publisher</span></code></a></p>
+</dd></dl>
+
 </dd></dl>
 
 </dd></dl>

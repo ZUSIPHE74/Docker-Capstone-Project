@@ -1,3 +1,5 @@
+"""URL routes for browser views and authenticated API endpoints."""
+
 from django.urls import path
 from . import views
 from .api_views import SubscribedArticlesAPIView
